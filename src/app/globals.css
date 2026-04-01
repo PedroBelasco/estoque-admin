@@ -72,7 +72,8 @@ main {
   background: #dedede;
   color: #111827;
   padding: 25px;
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;  
+  overflow-y: scroll; 
 }
 
 
@@ -86,4 +87,27 @@ footer {
   font-size: 14px;
   color: #ffffff;
   font-family: 'Inter', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e2f;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c63ff, #4b47c9);
+    border-radius: 10px;
+    border: 2px solid #1e1e2f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #8a84ff, #5a54e0);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #3f3ab3;
 }
