@@ -1,0 +1,72 @@
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1e1e2f;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        'img info'
+        'desc desc';
+}
+
+
+.container>div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.imagem {
+    grid-area: img;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 200px;
+    height: 180px;
+}
+
+.informacao {
+    grid-area: info;
+    gap: 2px;
+    display: grid;
+}
+
+.descricao {
+    grid-area: desc;
+    display: flex;
+    flex-direction: column;
+}
+
+.file {
+    width: 300px;
+}
+
+label {
+    font-weight: bold;
+    color: #b3b3ff;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #6c63ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 30px;
+}
+
+button:hover {
+    background-color: #6c63ff;
+}
+

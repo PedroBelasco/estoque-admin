@@ -1,8 +1,13 @@
+"use client"
 
-import  "./produto.css";
+
+import { useRouter } from "next/navigation";
+import "./produto.css";
 
 export default function PesquisaProduto() {
+    const router = useRouter();
     return (
+    
         <div className="container">
             <div>
                 <label htmlFor="">Categoria</label>
@@ -19,23 +24,31 @@ export default function PesquisaProduto() {
 
             <div className="tabela">
                 <table>
-                    <tr>
-                        <th>Categoria</th>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                    </tr>
-                    <tr>
-                        <td>plastico</td>
-                        <td>garrafa</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>aluminio</td>
-                        <td>panela</td>
-                        <td>12</td>
-                    </tr>
-                    
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onClick={() => router.push('/Telas/produto/cadastrarProduto')}>
+                            <td>plastico</td>
+                            <td>garrafa</td>
+                            <td>20</td>
+                        </tr>
+
+                        <tr>
+                            <td>aluminio</td>
+                            <td>panela</td>
+                            <td>12</td>
+                        </tr>
+                    </tbody>
+
                 </table>
+
+                <button onClick={() => router.push('/Telas/produto/cadastrarProduto')}>Criar Produto</button>
+
 
             </div>
         </div>
