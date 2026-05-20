@@ -1,30 +1,43 @@
 "use client";
 
-import cards from "../../card.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import styleCards from "@/app/Telas/style.module.css";
+import style from "@/app/Telas/style.module.css";
+import styleTexts from "@/app/Telas/style.module.css";
+import { useEffect, useState } from "react";
+import { ICategoria } from "@/app/Telas/interfaces/ICategoria";
+import { Listar } from "../api";
 
-export default function TelaListaCaretgoria() {
+export default function TelaListaCategoria() {
     const router = useRouter();
+    const [categorias, setcategorias] = useState<ICategoria[]>([])
+    async function CarregarDados(){
+        const CategoriaRecebida = await Listar()
+        setcategorias(CategoriaRecebida);
+    }
+
+    useEffect(()=> {CarregarDados()}, [])
     return (
-        
-        <div  className={cards.principal}>
-            <div className={cards.botoes}>
-                <div className={cards.criar} onClick={() => router.push("/Telas/categoria/cadastro")}>Criar Produto+</div>
+        <section className={style.conteudo}>
+
+            <h3 className={styleTexts.titulo}>Lista de Categorias</h3>
+
+            <div className={styleCards.cardsContainer}>
+                
+                <div onClick={() => router.push("/Telas/categoria/cadastro")} className={styleCards.cardCriar}>➕ Criar</div>
+
+                {
+                    categorias.map((categoria) => (
+                        <div
+                            key={categoria.id}
+                            className={styleCards.card}
+                            onClick={() => router.push("/Telas/categoria/cadastro?id=" + categoria.id)}
+                        >
+                            {categoria.nome}
+                        </div>
+                    ))
+                }
             </div>
-            <div className={cards.cardsContainer}>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Canecas</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Chaleiras</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Colherzinha</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Colheroes</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Pratos rasos</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>Pratos fundos</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>garfos</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>saleiros</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>facoes</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>fufu</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>açucareiros</div>
-                <div className={cards.card} onClick={() => router.push("/Telas/categoria/cadastro")}>panela de pressao</div>
-            </div>
-        </div>
+        </section>
     )
 }
